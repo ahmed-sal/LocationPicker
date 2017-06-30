@@ -638,13 +638,13 @@ open class LocationPicker: UIViewController, UIGestureRecognizerDelegate {
     
     func doneButtonDidTap(barButtonItem: UIBarButtonItem) {
         if let locationItem = selectedLocationItem {
-            dismiss(animated: true, completion: nil)
+            self.navigationController?.popViewController(animated: true)
             locationDidPick(locationItem: locationItem)
         }
     }
     
     func cancelButtonDidTap(barButtonItem: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     
@@ -973,6 +973,7 @@ extension LocationPicker: UITableViewDelegate, UITableViewDataSource {
             cell = LocationCell(locationType: .alternativeLocation, locationItem: locationItem)
             cell.iconView.image = alternativeLocationIcon ?? StyleKit.imageOfPinIcon(color: alternativeLocationIconColor)
         }
+        cell.iconView.contentMode = .center
         cell.locationNameLabel.textColor = primaryTextColor
         cell.locationAddressLabel.textColor = secondaryTextColor
         
